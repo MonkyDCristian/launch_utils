@@ -43,10 +43,10 @@ def get_cfg(package_name='pkg', config_file='config.yaml', config_folder='config
                 config_file
             )
 
-def launch_rviz_node(package_name="pkg", config_file="cfg.rviz"):
+def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz'):
     rviz_config = os.path.join(
                         get_package_share_directory(package_name),
-                        'rviz',
+                        rviz_folder,
                         config_file
                     )
     rviz_node = LaunchNode(
