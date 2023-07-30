@@ -21,7 +21,10 @@ def generate_launch_description():
                         parameters=[turtlesim2_cfg]
                     )
     
-    rviz_node = launch_rviz_node(package_name='turtle_tf2_py',  config_file='turtle_rviz.rviz')
+    rviz_node = launch_rviz_node(
+                    package_name='turtle_tf2_py',  
+                    config_file='turtle_rviz.rviz'
+                )
 
     return LaunchDescription([
             turtle_tf2_demo_node,

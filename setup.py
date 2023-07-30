@@ -12,7 +12,8 @@ setup(
         ('share/' + package_name, ['package.xml']),
         add_data_files(package_name, folder_name='launch', file_types=".launch.py"),
 	    add_data_files(package_name, folder_name='config', file_types=".yaml"),
-	    add_data_files(package_name, folder_name='rviz', file_types=".rviz")
+	    add_data_files(package_name, folder_name='rviz', file_types=".rviz"),
+        add_data_files(package_name, folder_name='urdf', file_types=".urdf.xacro")
     ],
     install_requires=['setuptools'],
     zip_safe=True,
