@@ -10,7 +10,7 @@ The functions of this pkg were created to avoid duplicate code and long code syn
 ## Install and Compile
 ```
 cd <your_ros2_ws>/src/
-git clone https://github.com/CaleuchePUC/caleuche_ws.git
+git clone https://github.com/MonkyDCristian/launch_utils.git
 cd <your_ros2_ws>/
 colcon build 
 ```
