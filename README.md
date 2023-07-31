@@ -1,5 +1,5 @@
 # launch_utils
-ROS2 pkg with utils functions to use launch pkgs
+ROS2 pkg with utils functions to use [ros2 launch pkgs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html)
 
 ## Description
 The functions of this pkg were created to avoid duplicate code and long code syntax that comes with ROS2 launch system
