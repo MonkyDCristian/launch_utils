@@ -14,12 +14,6 @@ git clone https://github.com/MonkyDCristian/launch_utils.git
 cd <your_ros2_ws>/
 colcon build 
 ```
-
-## Install dependencie 
-```
-sudo apt-get install ros-humble-turtle-tf2-py
-```
-
 ## Documentation
 The utils functions are contained in [launch_utils/utils.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py), check the [setup.py](https://github.com/MonkyDCristian/launch_utils/blob/main/setup.py) and the [example.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py) to learn how to use it.
 
@@ -36,6 +30,12 @@ from launch_utils.utils import launch_robot_state_publisher_node
 from launch_utils.utils import launch_joint_state_publisher_node
 ```
 ### Demo:
+Install dependencie :
+```
+sudo apt-get install ros-humble-turtle-tf2-py
+```
+
+Launch example:
 ```
 ros2 launch launch_utils example.launch.py
 ```
