@@ -35,6 +35,10 @@ from launch_utils.utils import launch_rviz_node
 from launch_utils.utils import launch_robot_state_publisher_node
 from launch_utils.utils import launch_joint_state_publisher_node
 ```
+### Demo:
+```
+ros2 launch launch_utils example.launch.py
+```
 
 ## References 
 * [ROS2 launch for large projects](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html)
