@@ -15,7 +15,7 @@ cd <your_ros2_ws>/
 colcon build 
 ```
 ## Documentation
-The utils functions are contained in [launch_utils/utils.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py), check the [setup.py](https://github.com/MonkyDCristian/launch_utils/blob/main/setup.py) and the [example.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py) to learn how to use it.
+The utils functions are contained in [launch_utils/utils.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py), check the [setup.py](https://github.com/MonkyDCristian/launch_utils/blob/main/setup.py) and the [example.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py) and [example2.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example2.launch.py) to learn how to use it.
 
 for your setup.py:
 ```
@@ -24,7 +24,7 @@ from launch_utils.utils import add_data_files
 
 for yours launch files .launch.py:
 ```
-from launch_utils.utils import include_launch, get_cfg
+from launch_utils.utils import include_launch, get_path
 from launch_utils.utils import launch_rviz_node
 from launch_utils.utils import launch_robot_state_publisher_node
 from launch_utils.utils import launch_joint_state_publisher_node
