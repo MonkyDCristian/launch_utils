@@ -14,15 +14,28 @@ from launch_ros.actions import Node as LaunchNode
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
-def add_data_files(package_name='pkg', folder_name='launch', file_types=".launch.py"):
+def add_data_files(data_files=[], package_name='pkg', folder_file_dir={'launch':'.launch.py'}):
     """
         folder_name / file_types
         launch      / .launch.py
         config      / .yaml
         rviz        / .rviz
-        urdf        / .urdf.xacro
+        urdf        / .xacro (or all if you have models inside)
     """
-    return (os.path.join('share', package_name, folder_name), glob(os.path.join(folder_name, f'*{file_types}')))
+    for folder_name, files_type in folder_file_dir.items():
+        if files_type != "all":
+            folder_path = os.path.join('share', package_name, folder_name)
+            file_names = glob(os.path.join(folder_name, f'*{files_type}'))
+            data_files.append((folder_path, file_names))
+        
+        else:
+            for (path, directories, file_names) in os.walk(folder_name):
+                if len(file_names) > 0:
+                    folder_path = os.path.join('share', package_name, path)
+                    filenames = glob(os.path.join(path, f'*.*'))
+                    data_files.append((folder_path, filenames))
+    
+    return data_files
 
 def include_launch(package_name="pkg", launch_file="example.launch.py", launch_folder='launch', launch_arguments=None):
     return IncludeLaunchDescription(
@@ -36,33 +49,27 @@ def include_launch(package_name="pkg", launch_file="example.launch.py", launch_f
                 launch_arguments=launch_arguments
             )
 
-def get_cfg(package_name='pkg', config_file='config.yaml', config_folder='config'):
+def get_path(package_name='pkg', file='config.yaml', folder='config'):
     return os.path.join(
                 get_package_share_directory(package_name), 
-                config_folder, 
-                config_file
+                folder, 
+                file
             )
 
 def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz'):
-    rviz_config = os.path.join(
-                        get_package_share_directory(package_name),
-                        rviz_folder,
-                        config_file
-                    )
+    rviz_config = get_path(package_name, config_file, rviz_folder)
+    
     rviz_node = LaunchNode(
                     package='rviz2', 
                     executable='rviz2', 
                     name='rviz2', 
                     arguments=['-d', rviz_config]
                 )
+    
     return rviz_node
 
 def launch_robot_state_publisher_node(package_name='pkg', xacro_file='robot.urdf.xacro', urdf_folder='urdf'):
-    path_to_urdf = os.path.join(
-                        get_package_share_directory(package_name), 
-                        urdf_folder, 
-                        xacro_file
-                    )
+    path_to_urdf = get_path(package_name, xacro_file, urdf_folder)
     
     robot_description = ParameterValue(Command(['xacro ', str(path_to_urdf)]), value_type=str)
     
