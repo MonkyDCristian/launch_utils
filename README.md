@@ -40,6 +40,11 @@ Launch example:
 ros2 launch launch_utils example.launch.py
 ```
 
+Launch example2:
+```
+ros2 launch launch_utils example2.launch.py
+```
+
 ## References 
 * [ROS2 launch for large projects](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html)
 * [Xacro to clean up a URDF file](https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Using-Xacro-to-Clean-Up-a-URDF-File.html)
