@@ -36,10 +36,6 @@ from launch_utils.utils import launch_robot_state_publisher_node
 from launch_utils.utils import launch_joint_state_publisher_node
 ```
 ### Demo:
-Install dependencie :
-```
-sudo apt-get install ros-humble-turtle-tf2-py
-```
 
 Launch example:
 ```
