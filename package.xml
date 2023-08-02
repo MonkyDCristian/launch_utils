@@ -6,6 +6,8 @@
   <description>ROS2 pkg with utils functions to use launch pkgs</description>
   <maintainer email="cristian.nova@uc.cl">novi</maintainer>
   <license>Apache License 2.0</license>
+  
+  <build_depend>turtle_tf2_py</build_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
