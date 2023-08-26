@@ -37,6 +37,14 @@ def add_data_files(data_files=[], package_name='pkg', folder_file_dir={'launch':
     
     return data_files
 
+def add_entry_points(run_scripts=[], package_name='pkg'):
+    console_scripts = []
+    for script in run_scripts:
+        console_scripts.append(f'{script} = {package_name}.{script}:main')
+    
+    return {'console_scripts':console_scripts,}
+
+
 def include_launch(package_name="pkg", launch_file="example.launch.py", launch_folder='launch', launch_arguments=None):
     return IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([

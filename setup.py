@@ -1,5 +1,5 @@
 from setuptools import find_packages, setup
-from launch_utils.utils import add_data_files
+from launch_utils.utils import add_data_files, add_entry_points
 
 package_name = 'launch_utils'
 
@@ -14,6 +14,8 @@ folder_file_dir = {'launch':'.launch.py',
 
 data_files = add_data_files(data_files, package_name, folder_file_dir)
 
+entry_points = add_entry_points(['my_node'], package_name)
+
 setup(
     name=package_name,
     version='0.0.0',
@@ -26,9 +28,5 @@ setup(
     description='ROS2 pkg with utils functions to use launch pkgs',
     license='Apache License 2.0',
     tests_require=['pytest'],
-    entry_points={
-        'console_scripts': [
-            'my_node = launch_utils.my_node:main'
-        ],
-    },
+    entry_points=entry_points,
 )
