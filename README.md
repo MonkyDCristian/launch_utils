@@ -25,24 +25,32 @@ The utils functions are contained in [launch_utils/utils.py](https://github.com/
 
 for your setup.py:
 ```
-from launch_utils.utils import add_data_files
+from launch_utils.utils import add_data_files, add_entry_points
 ```
 
 for yours launch files .launch.py:
 ```
 from launch_utils.utils import include_launch, get_path
+
 from launch_utils.utils import launch_rviz_node
 from launch_utils.utils import launch_robot_state_publisher_node
 from launch_utils.utils import launch_joint_state_publisher_node
+from launch_utils.utils import launch_static_tf_node
 ```
+
 ### Demo:
 
-Launch example:
+Launch example:  include_launch and get_path
 ```
 ros2 launch launch_utils example.launch.py
 ```
 
-Launch example2:
+Launch example2: robot_state_publisher and joint_state_publisher
+```
+ros2 launch launch_utils example2.launch.py
+```
+
+Launch example3: launch_static_tf_node
 ```
 ros2 launch launch_utils example2.launch.py
 ```
