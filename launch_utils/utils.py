@@ -1,5 +1,6 @@
 # https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html
 # https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Using-Xacro-to-Clean-Up-a-URDF-File.html
+# https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Static-Broadcaster-Py.html
 
 import os
 from glob import glob
@@ -14,6 +15,7 @@ from launch_ros.actions import Node as LaunchNode
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
+# ---- Utils for setup.py ----
 def add_data_files(data_files=[], package_name='pkg', folder_file_dir={'launch':'.launch.py'}):
     """
         folder_name / file_types
@@ -44,7 +46,7 @@ def add_entry_points(run_scripts=[], package_name='pkg'):
     
     return {'console_scripts':console_scripts,}
 
-
+# ---- Utils for launch.py scripts ----
 def include_launch(package_name="pkg", launch_file="example.launch.py", launch_folder='launch', launch_arguments=None):
     return IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([
@@ -65,7 +67,12 @@ def get_path(package_name='pkg', file='config.yaml', folder='config'):
             )
 
 def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz'):
-    rviz_config = get_path(package_name, config_file, rviz_folder)
+    
+    if config_file == "default":
+        rviz_config = "default.rviz"
+    
+    else:
+        rviz_config = get_path(package_name, config_file, rviz_folder)
     
     rviz_node = LaunchNode(
                     package='rviz2', 
@@ -103,5 +110,14 @@ def launch_joint_state_publisher_node(gui=False):
                     executable=joint_state_publisher
                 )
     return jsp_node
+
+def launch_static_tf_node(parent_frame='world', child_frame='child', translation = [0, 0, 0], rotation = [0, 0, 0]):
+    # translation in meters, rotation in radians. both can be ints or floats
+    stf_node = LaunchNode(package='tf2_ros', executable='static_transform_publisher',
+            arguments = ['--x', str(translation[0]), '--y', str(translation[1]), '--z', str(translation[2]), 
+                         '--roll', str(rotation[0]), '--pitch', str(rotation[1]), '--yaw', str(rotation[2]),
+                         '--frame-id', parent_frame, 
+                         '--child-frame-id', child_frame])
+    return stf_node
 
     
