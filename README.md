@@ -2,7 +2,16 @@
 ROS2 pkg with utils functions to use [ros2 launch pkgs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html)
 
 ## Description
-The functions of this pkg were created to avoid duplicate code and long code syntax that comes with ROS2 launch system
+The functions of this pkg is to avoid duplicate code and long code syntax that comes with ROS2 launch system and setup.py file.
+to use this the launch utils you just have to use this name folders structure in your ROS2 packages:
+```
+config: folder for yours .yaml files configurations.
+launch: Folder for yours launch files writed in .launch.py format file.
+<pkg-name>: Folder for yours python nodes.
+urdf: Folder for yours xacro, URDF and 3D mesh components files.
+rviz: Folder for yours rviz configs files.
+```
+This format can be changed by parameters to meet your needs, check the source code in the scripts in launch_utils folder and the examples to learn how to use it.
 
 ## Dependencies
 * Framework: [ROS2 Humble (desktop)](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
@@ -52,7 +61,7 @@ ros2 launch launch_utils example2.launch.py
 
 Launch example3: launch_static_tf_node
 ```
-ros2 launch launch_utils example2.launch.py
+ros2 launch launch_utils example3.launch.py
 ```
 
 ## References 
