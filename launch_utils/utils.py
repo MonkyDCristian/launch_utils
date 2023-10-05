@@ -9,11 +9,14 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution, Command
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
 
 from launch_ros.actions import Node as LaunchNode
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
+
+from ast import literal_eval
+
 
 # ---- Utils for setup.py ----
 def add_data_files(data_files=[], package_name='pkg', folder_file_dir={'launch':'.launch.py'}):
@@ -47,7 +50,7 @@ def add_entry_points(run_scripts=[], package_name='pkg'):
     return {'console_scripts':console_scripts,}
 
 # ---- Utils for launch.py scripts ----
-def include_launch(package_name="pkg", launch_file="example.launch.py", launch_folder='launch', launch_arguments=None):
+def include_launch(package_name="pkg", launch_file="example.launch.py", launch_folder='launch', launch_arguments=False):
     return IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([
                     PathJoinSubstitution([
@@ -56,7 +59,7 @@ def include_launch(package_name="pkg", launch_file="example.launch.py", launch_f
                         launch_file
                     ])
                 ]),
-                launch_arguments=launch_arguments
+                launch_arguments = launch_arguments.items() if launch_arguments else None
             )
 
 def get_path(package_name='pkg', file='config.yaml', folder='config'):
@@ -65,6 +68,18 @@ def get_path(package_name='pkg', file='config.yaml', folder='config'):
                 folder, 
                 file
             )
+
+def get_launch_argument(name, default, context):
+    """
+        name: str, default: str, type: str-> "str"/"list"/"int"/"float"/"bool", context: LaunchContext
+    """
+    if type(default) == type(str()):
+        return LaunchConfiguration(name, default = default).perform(context)
+    
+    elif type(default)== type(list()):
+        return literal_eval(LaunchConfiguration(name, default = str(default)).perform(context))
+    
+    return eval(LaunchConfiguration(name, default = str(default)).perform(context))
 
 def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz'):
     
