@@ -30,7 +30,7 @@ rosdep install -i --from-path src --rosdistro humble -y
 ```
 
 ## Documentation
-The utils functions are contained in [launch_utils/utils.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py), check the files [setup.py](https://github.com/MonkyDCristian/launch_utils/blob/main/setup.py), [example.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py) and [example2.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example2.launch.py) to learn how to use it.
+The utils functions are contained in [launch_utils/utils.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch_utils/utils.py), check the files [setup.py](https://github.com/MonkyDCristian/launch_utils/blob/main/setup.py), [example.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example.launch.py) and [example2.launch.py](https://github.com/MonkyDCristian/launch_utils/blob/main/launch/example2.launch.py) to learn how to use it.
 
 for your setup.py:
 ```
