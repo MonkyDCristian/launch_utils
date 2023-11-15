@@ -83,7 +83,7 @@ def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rv
     
     return rviz_node
 
-def launch_robot_state_publisher_node(package_name='pkg', xacro_file='robot.urdf.xacro', urdf_folder='urdf'):
+def launch_robot_state_publisher_node(package_name='pkg', xacro_file='robot.urdf.xacro', urdf_folder='urdf', namespace=None):
     path_to_urdf = get_path(package_name, xacro_file, urdf_folder)
     
     robot_description = ParameterValue(Command(['xacro ', str(path_to_urdf)]), value_type=str)
@@ -91,6 +91,7 @@ def launch_robot_state_publisher_node(package_name='pkg', xacro_file='robot.urdf
     rsp_node = LaunchNode(
                     package='robot_state_publisher',
                     executable='robot_state_publisher',
+                    namespace=namespace,
                     parameters=[{
                         'robot_description': robot_description
                     }]
