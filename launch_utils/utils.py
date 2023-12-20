@@ -81,7 +81,7 @@ def get_launch_argument(name, default, context):
     
     return eval(LaunchConfiguration(name, default = str(default)).perform(context))
 
-def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz'):
+def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz', parameters=None):
     
     if config_file == "default":
         rviz_config = "default.rviz"
@@ -93,7 +93,8 @@ def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rv
                     package='rviz2', 
                     executable='rviz2', 
                     name='rviz2', 
-                    arguments=['-d', rviz_config]
+                    arguments=['-d', rviz_config],
+                    parameters=parameters
                 )
     
     return rviz_node
