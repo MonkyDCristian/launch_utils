@@ -2,7 +2,10 @@
 # https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Using-Xacro-to-Clean-Up-a-URDF-File.html
 # https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Static-Broadcaster-Py.html
 
+import xacro
+
 import os
+
 from glob import glob
 
 from ament_index_python.packages import get_package_share_directory 
@@ -99,10 +102,11 @@ def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rv
     
     return rviz_node
 
-def launch_robot_state_publisher_node(package_name='pkg', xacro_file='robot.urdf.xacro', urdf_folder='urdf', namespace=None):
+def launch_robot_state_publisher_node(package_name='pkg', xacro_file='robot.urdf.xacro', urdf_folder='urdf', namespace=None, args=None):
     path_to_urdf = get_path(package_name, xacro_file, urdf_folder)
     
-    robot_description = ParameterValue(Command(['xacro ', str(path_to_urdf)]), value_type=str)
+    robot_description = xacro.process_file(path_to_urdf, mappings=args).toprettyxml(indent='  ')
+    #robot_description = ParameterValue(Command(['xacro ', str(path_to_urdf)]), value_type=str)
     
     rsp_node = LaunchNode(
                     package='robot_state_publisher',
