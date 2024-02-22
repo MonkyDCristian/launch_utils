@@ -11,6 +11,7 @@ from glob import glob
 from ament_index_python.packages import get_package_share_directory 
 
 from launch.actions import IncludeLaunchDescription
+from launch.conditions import IfCondition   
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
 
@@ -85,7 +86,9 @@ def get_launch_argument(name, default, context):
     return eval(LaunchConfiguration(name, default = str(default)).perform(context))
 
 def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz', parameters=None):
+    """
     
+    """
     if config_file == "default":
         rviz_config = "default.rviz"
     
@@ -97,7 +100,8 @@ def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rv
                     executable='rviz2', 
                     name='rviz2', 
                     arguments=['-d', rviz_config],
-                    parameters=parameters
+                    parameters=parameters,
+                    condition=IfCondition(LaunchConfiguration('rviz', default=True))
                 )
     
     return rviz_node
