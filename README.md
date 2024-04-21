@@ -3,7 +3,7 @@ ROS2 pkg with utils functions to use [ros2 launch pkgs](https://docs.ros.org/en/
 
 ## Description
 The functions of this pkg is to avoid duplicate code and long code syntax that comes with ROS2 launch system and setup.py file.
-to use this the launch utils you just have to use this name folders structure in your ROS2 packages:
+To use the launch_utils pkg you just have to use this name folders structure in your ROS2 packages:
 ```
 config: folder for yours .yaml files configurations.
 launch: Folder for yours launch files writed in .launch.py format file.
