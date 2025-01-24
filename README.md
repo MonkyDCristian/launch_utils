@@ -25,7 +25,7 @@ colcon build --packages-select launch_utils
 ```
 Install dependencies 
 ```
-cd ~/caleuche_ws
+cd <your_ros2_ws>
 rosdep install -i --from-path src --rosdistro humble -y
 ```
 
