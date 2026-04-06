@@ -85,7 +85,7 @@ def get_launch_argument(name, default, context):
     
     return eval(LaunchConfiguration(name, default = str(default)).perform(context))
 
-def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz', parameters=None):
+def launch_rviz_node(package_name="pkg", config_file="cfg.rviz", rviz_folder='rviz', parameters=[{'use_sim_time': True}]):
     """
     
     """
